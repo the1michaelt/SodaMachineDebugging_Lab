@@ -44,7 +44,7 @@ def display_welcome(): #menu simulation 1
     if user_response:
         return True
     else:
-        print("Thanks anyway. Please come again another day. Enjoy your day.")
+        print("Thanks anyway. Please come again another time. Enjoy your day.")
         return False
 
 
@@ -70,22 +70,23 @@ def continue_prompt(text):
 
 def soda_selection(inventory): #simulation menu 1
     """Displays purchasable soda inventory and prompts user to select a can."""
-    validated_user_selection = (False, None)
+    validated_user_selection = (False, None) #False?? change to True?
     soda_options = get_unique_can_names(inventory)
     while validated_user_selection[0] is False:
         print("Please choose from the following options:")
-        press_number = 1  #changed parameter from "i". 
+        number_for_choice = 1  #changed parameter from "i". 
         for can in soda_options:
-            print("\n\tEnter -{press_number}- for {can} : ${can.price}")
-            press_number += 1
-        user_selection = try_parse_int(input("Selection:"))#not showing any options from which to choose.
+            print(f"\n\tEnter -{number_for_choice}- for {can.name} : ${can.price}") #f string missing
+            number_for_choice += 1
+
+        user_selection = try_parse_int(input("Selection:"))
         validated_user_selection = validate_coin_choice(user_selection, soda_options)
     return validated_user_selection[1]
 
 
 def validate_coin_choice(selection, unique_cans):
     """Translates user menu selection into the name of can that was chosen. No errors."""
-    if 0 < selection <= len(unique_cans):
+    if 0 < selection <= len(unique_cans):  
         return True, unique_cans[selection - 1].name
     else:
         print("Not a valid selection\n")
@@ -100,7 +101,7 @@ def try_parse_int(value):
         return 0
 
 
-def get_unique_can_names(inventory):  #menu simulation 1
+def get_unique_can_names(inventory):  # menu simulation 1
     """Loops through inventory to create a list of all distinct types of sodas available. No errors."""
     unique_cans = []
     previous_names = []

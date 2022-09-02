@@ -26,6 +26,7 @@ class SodaMachine:
             self.inventory.append(cans.OrangeSoda())
         for index in range(10):
             self.inventory.append(cans.RootBeer())
+    
 
     def begin_transaction(self, customer):
         """Method is complete. Initiates purchase if user decides to proceed. No errors."""
@@ -37,7 +38,7 @@ class SodaMachine:
 
         selected_soda_name = user_interface.soda_selection(self.inventory)
 
-        selected_soda_name = self.get_inventory_soda(selected_soda_name)
+        selected_soda_name = self.get_inventory_soda(selected_soda_name) #selected_soda_name
 
         customer_payment = customer.gather_coins_from_wallet(selected_soda_name)
 
@@ -124,7 +125,7 @@ class SodaMachine:
             if can == selected_soda_name:
                 self.inventory.remove(can)
                 return can
-        return None
+        # return inventory #inventory, not None
 
     def return_inventory(self, chosen_soda):
         """Re-adds a remove can back to inventory upon unsuccessful purchase attempt"""

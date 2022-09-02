@@ -14,6 +14,7 @@ class Simulation:
         while will_proceed:
             user_option = user_interface.simulation_main_menu()
             if user_option == 1: #"1" is a string, not an int.
+                soda_machine.fill_inventory()
                 soda_machine.begin_transaction(customer)
             elif user_option == 2:
                 customer.check_coins_in_wallet()

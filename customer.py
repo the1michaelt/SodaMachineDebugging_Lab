@@ -11,7 +11,7 @@ class Customer:
         """Method allowing user to choose coins from wallet for payment"""
         will_proceed = False
         customer_payment = []
-        user_interface.output_text("Continue to add coins until you are ready to insert them into the machine")
+        user_interface.output_text("Gather your coins until you are ready to insert them into the machine.") #replaced "Continue to add"
         while will_proceed:
             user_interface.display_can_cost(selected_soda)
             user_interface.display_payment_value(customer_payment)
