@@ -52,7 +52,7 @@ class SodaMachine:
             change_value = self.determine_change_value(total_payment_value, selected_soda.price)
             customer_change = self.gather_change_from_register(change_value)
             if customer_change is None:
-                user_interface.output_text('Dispensing ${total_payment_value} back to customer')
+                user_interface.output_text('Now dispensing ${total_payment_value} back to you.')
                 customer.add_coins_to_wallet(customer_payment)
                 self.return_inventory(selected_soda)
             else:
@@ -124,8 +124,8 @@ class SodaMachine:
         for can in self.inventory:
             if can == selected_soda_name:
                 self.inventory.remove(can)
-                return can
-        # return inventory #inventory, not None
+                return can.name #ADDED NAME
+        # return None
 
     def return_inventory(self, chosen_soda):
         """Re-adds a remove can back to inventory upon unsuccessful purchase attempt"""
