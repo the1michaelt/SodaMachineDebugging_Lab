@@ -5,7 +5,7 @@ import os
 
 def simulation_main_menu(): #step 1
     """Main menu prompting user to choose an option"""
-    validate_user_selection = (False, None)
+    validate_user_selection = (False, None) #False or True??
     while validate_user_selection[0] is False:
         print("\n\t-Simulation menu-")
         print("Enter -1- to buy a soda")
@@ -39,12 +39,12 @@ def display_customer_wallet_info(coins_list, total_value):
 
 def display_welcome(): #menu simulation 1
     """Initial method asking user if they'll make a purchase. No errors."""
-    print("\nWelcome to the soda machine. You may purchase a drink only with coins.")
+    print("\nWelcome to the soda machine.\nYou may purchase a drink only with coins.")
     user_response = continue_prompt("Would you like to buy a soda now? (y/n) ")
     if user_response:
         return True
     else:
-        print("Thanks anyway. Please come again another time. Enjoy your day.")
+        print("Thanks anyway. Please come again another time.\nEnjoy your day.")
         return False
 
 
@@ -78,7 +78,7 @@ def soda_selection(inventory): #simulation menu 1
         for can in soda_options:
             print(f"Enter -{number_for_choice}- {can.name} costs ${can.price}") #f string missing
             number_for_choice += 1
-
+            return soda_options
         user_selection = try_parse_int(input("\nYour selection was: "))
         validated_user_selection = validate_coin_choice(user_selection, soda_options)
     return validated_user_selection[1]
@@ -114,19 +114,18 @@ def get_unique_can_names(inventory):  # menu simulation 1
     return unique_cans
 
 
-def display_can_cost(selected_soda_name): #menu simulation 1 #changed from "selected_can"
+def display_can_cost(selected_soda):  # menu simulation 1 #changed from "selected_can"
     """Displays the name of a can and its price"""
-    print(f'The price of a {selected_soda_name} is ${selected_soda_name}.')
-
+    print(f'{soda_options.name} costs ${soda_options.price}.')
+    #print(f'The price of a {selected_soda_name} is ${selected_soda_name}.')
 
 def display_payment_value(customer_payment):
     """Displays the value of selected coins as customer is choosing coins to deposit"""
     total_payment_value = 0
     for coin in customer_payment:
-        total_payment_value += 1
+        total_payment_value += 1 #change from 1 to coin?
     total_payment_value = round(total_payment_value, 2)
     print(f'You have paid ${total_payment_value} so far.')
-
 
 def coin_selection():
     """Prompts user to choose which coins to deposit and passes their selection in validate_coin_selection"""
@@ -151,7 +150,7 @@ def validate_coin_selection(selection):
         2: (True, "Dime"),
         3: (True, "Nickel"),
         4: (True, "Penny"),
-        5: (True, "Done")
+        5: (True, "done")
     }
     return switcher.get(selection, (False, None))
 
