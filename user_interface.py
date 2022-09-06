@@ -78,7 +78,7 @@ def soda_selection(inventory): #simulation menu 1
         for can in soda_options:
             print(f"Enter -{number_for_choice}- {can.name} costs ${can.price}") #f string missing
             number_for_choice += 1
-            return soda_options
+            # return soda_options
         user_selection = try_parse_int(input("\nYour selection was: "))
         validated_user_selection = validate_coin_choice(user_selection, soda_options)
     return validated_user_selection[1]
@@ -116,14 +116,14 @@ def get_unique_can_names(inventory):  # menu simulation 1
 
 def display_can_cost(selected_soda):  # menu simulation 1 #changed from "selected_can"
     """Displays the name of a can and its price"""
-    print(f'{soda_options.name} costs ${soda_options.price}.')
+    # print(f'{soda_options.can.name} costs ${soda_options.can.price}.')
     #print(f'The price of a {selected_soda_name} is ${selected_soda_name}.')
 
 def display_payment_value(customer_payment):
     """Displays the value of selected coins as customer is choosing coins to deposit"""
     total_payment_value = 0
     for coin in customer_payment:
-        total_payment_value += 1 #change from 1 to coin?
+        total_payment_value += 1 #1 adds a dollar change from 1 to coin?
     total_payment_value = round(total_payment_value, 2)
     print(f'You have paid ${total_payment_value} so far.')
 
@@ -136,14 +136,14 @@ def coin_selection():
         print("Enter -N- to choose a Nickel")
         print("Enter -P- to choose a Penny")
         print("Enter -5- when you finish depositing your coins.")
-        user_input = try_parse_int(input())
+        user_input = try_parse_int(input()) 
         validated_user_selection = validate_coin_selection(user_input)
         if validated_user_selection[0] is False:
             print("That was not a valid selection. Please try again.")
     return validated_user_selection[1]
 
 
-def validate_coin_selection(selection):
+def validate_coin_selection(selection): 
     """Validation function that checks if 'selection' arugment is an int 1-5"""
     switcher = {
         1: (True, "Quarter"),
@@ -152,7 +152,7 @@ def validate_coin_selection(selection):
         4: (True, "Penny"),
         5: (True, "done")
     }
-    return switcher.get(selection, (False, None))
+    return switcher.get(selection, (True, None))#false to True?
 
 
 def end_message(soda_name, change_amount):
